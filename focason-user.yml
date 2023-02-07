@@ -1,0 +1,65 @@
+# サーバー
+server:
+  port: ${APP_PORT:8082}
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+  application:
+    name: focason-user
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_SCHEMA:focason}?useSSL=false&autoReconnect=true&characterEncoding=UTF-8&useUnicode=yes
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:password}
+    driver-class-name: com.mysql.jdbc.Driver
+    #druid连接池
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_SCHEMA:focason}?useSSL=false&autoReconnect=true&characterEncoding=UTF-8&useUnicode=yes
+      username: ${DB_USERNAME:root}
+      password: ${DB_PASSWORD:password}
+      web-stat-filter:
+        enabled: true
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: 123456
+        reset-enable: false
+  jackson:
+    time-zone: Asia/Tokyo
+  freemarker:
+    check-template-location: false
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    open-in-view: off
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://root:password@localhost:8761/eureka/
+
+# ログ
+logging:
+  level:
+    root: INFO
+    api.lemonico: INFO
+    org.springframework.data.convert.CustomConversions: ERROR
+
+# AWS
+cloud:
+  aws:
+    region: 'ap-northeast-1'
+    s3:
+      file-upload:
+        bucket-name: lemonico-file
+        prefix:
+        pre-signed-url-valid-minutes: 15
+
+# Doma
+doma:
+  dialect: mysql

@@ -1,0 +1,30 @@
+server:
+  port: 9000
+  servlet:
+    context-path: /auth
+
+spring:
+  application:
+    name: focason-oauth2
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://root:password@localhost:8761/eureka/
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.springframework.security.oauth2: INFO
+
+# JWTトークン
+jwt:
+  secret: ${APP_SECRET:iWpJnu21sTumTsfyldkfjpo23iiu34tierfjwerjfop43oeorgfsndhfopoewkrjti43orweksdnfjw4e}
+  access_token_expires_in: 3600 # 単位：秒
+  refresh_token_expires_in: 604800 # 単位：秒
+  refresh_token_header: X-REFRESH-TOKEN
