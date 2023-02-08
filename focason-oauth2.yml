@@ -6,6 +6,11 @@ server:
 spring:
   application:
     name: focason-oauth2
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 eureka:
   instance:
@@ -30,3 +35,9 @@ jwt:
   refresh_token_header: X-REFRESH-TOKEN
 auth:
   name: admin
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, bus-refresh
