@@ -25,6 +25,6 @@ logging:
 # JWTトークン
 jwt:
   secret: ${APP_SECRET:iWpJnu21sTumTsfyldkfjpo23iiu34tierfjwerjfop43oeorgfsndhfopoewkrjti43orweksdnfjw4e}
-  access_token_expires_in: 7200 # 単位：秒
+  access_token_expires_in: 1200 # 単位：秒
   refresh_token_expires_in: 604800 # 単位：秒
   refresh_token_header: X-REFRESH-TOKEN
