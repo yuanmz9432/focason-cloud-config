@@ -8,6 +8,11 @@ spring:
     web-application-type: reactive
     allow-bean-definition-overriding: true
     allow-circular-references: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: root
+    password: password
   cloud:
     gateway:
       routes:
@@ -19,6 +24,12 @@ spring:
           uri: lb://focason-user
           predicates:
             - Path=/users/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
 
 eureka:
   instance:
