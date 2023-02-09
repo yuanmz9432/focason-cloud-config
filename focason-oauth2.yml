@@ -11,6 +11,31 @@ spring:
     port: 5672
     username: guest
     password: guest
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_SCHEMA:focason}?useSSL=false&autoReconnect=true&characterEncoding=UTF-8&useUnicode=yes
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:password}
+    driver-class-name: com.mysql.jdbc.Driver
+    #druid连接池
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_SCHEMA:focason}?useSSL=false&autoReconnect=true&characterEncoding=UTF-8&useUnicode=yes
+      username: ${DB_USERNAME:root}
+      password: ${DB_PASSWORD:password}
+      web-stat-filter:
+        enabled: true
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: 123456
+        reset-enable: false
+  jackson:
+    time-zone: Asia/Tokyo
+  freemarker:
+    check-template-location: false
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    open-in-view: off
 
 eureka:
   instance:
