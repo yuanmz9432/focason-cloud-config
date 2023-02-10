@@ -25,12 +25,6 @@ spring:
           predicates:
             - Path=/users/**
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: bus-refresh
-
 eureka:
   instance:
     prefer-ip-address: true
@@ -45,3 +39,9 @@ logging:
     org.springframework.web: INFO
     org.springframework.security: INFO
     org.springframework.security.oauth2: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh

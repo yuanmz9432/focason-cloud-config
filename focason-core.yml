@@ -27,13 +27,6 @@ logging:
     org.springframework.security: INFO
     org.springframework.security.oauth2: INFO
 
-# JWTトークン
-jwt:
-  secret: ${APP_SECRET:iWpJnu21sTumTsfyldkfjpo23iiu34tierfjwerjfop43oeorgfsndhfopoewkrjti43orweksdnfjw4e}
-  access_token_expires_in: 4800 # 単位：秒
-  refresh_token_expires_in: 604800 # 単位：秒
-  refresh_token_header: X-REFRESH-TOKEN
-
 management:
   endpoints:
     web:
