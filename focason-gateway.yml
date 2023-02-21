@@ -13,17 +13,6 @@ spring:
     port: 5672
     username: guest
     password: guest
-#  cloud:
-#    gateway:
-#      routes:
-#        - id: focason-oauth2
-#          uri: lb://focason-oauth2
-#          predicates:
-#            - Path=/auth/**
-#        - id: focason-user
-#          uri: lb://focason-user
-#          predicates:
-#            - Path=/users/**
 
 logging:
   level:
