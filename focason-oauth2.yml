@@ -31,9 +31,9 @@ spring:
         login-password: 123456
         reset-enable: false
   jackson:
-    time-zone: Asia/Tokyo # 时区
+    time-zone: Asia/Tokyo
   freemarker:
-    check-template-location: false # 不检查template文件夹
+    check-template-location: false
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     open-in-view: off

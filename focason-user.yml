@@ -1,15 +1,16 @@
-# サーバー
 server:
-  port: ${APP_PORT:8082}
+  port: 8081 # 端口号
 
 spring:
-  servlet:
-    multipart:
-      max-file-size: -1
-      max-request-size: -1
   application:
-    name: focason-user
+    name: focason-user # 应用名称
+  rabbitmq:
+    host: {RABBITMQ_HOST:localhost} # RabbitMQ主机名
+    port: {RABBITMQ_PORT:5672} # RabbitMQ端口
+    username: {RABBITMQ_USERNAME:guest} # RabbitMQ用户名
+    password: {RABBITMQ_PASSWORD:guest} # RabbitMQ密码
   datasource:
+    # 数据库连接信息
     url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_SCHEMA:focason}?useSSL=false&autoReconnect=true&characterEncoding=UTF-8&useUnicode=yes
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:password}
@@ -39,19 +40,17 @@ spring:
 logging:
   level:
     root: INFO
-    api.lemonico: INFO
-    org.springframework.data.convert.CustomConversions: ERROR
 
 # AWS
 cloud:
   aws:
-    region: 'ap-northeast-1'
+    region: {AWS_REGION:ap-northeast-1}
     s3:
       file-upload:
-        bucket-name: lemonico-file
+        bucket-name: {AWS_S3_BUCKET_NAME:focason-sandbox}
         prefix:
-        pre-signed-url-valid-minutes: 15
+        pre-signed-url-valid-minutes: 15 # PreSigned连接的有效时间，单位：分钟
 
 # Doma
-doma:
-  dialect: mysql
+#doma:
+#  dialect: mysql

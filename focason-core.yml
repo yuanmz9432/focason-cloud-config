@@ -1,5 +1,5 @@
 server:
-  port: 8081 # 端口号
+  port: 8000 # 端口号
   servlet:
     context-path: /core # 应用的上下文路径
 
