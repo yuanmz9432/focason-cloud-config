@@ -1,34 +1,33 @@
 server:
-  port: 8081
+  port: 8081 # 端口号
   servlet:
-    context-path: /core
+    context-path: /core # 应用的上下文路径
 
 spring:
   application:
-    name: focason-core
+    name: focason-core # 应用名称
   rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
+    host: {RABBITMQ_HOST:localhost} # RabbitMQ主机名
+    port: {RABBITMQ_PORT:5672} # RabbitMQ端口
+    username: {RABBITMQ_USERNAME:guest} # RabbitMQ用户名
+    password: {RABBITMQ_PASSWORD:guest} # RabbitMQ密码
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, bus-refresh # 为Actuator开放所需监控地址
+
+# 将focason-core注册到Eureka注册中心
 eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
   client:
     service-url:
-      defaultZone: http://root:password@localhost:8761/eureka/
+      defaultZone: http://${EUREKA_SERVER_USERNAME:root}:${EUREKA_SERVER_PASSWORD:password}@localhost:8761/eureka/
 
+# 日志级别
 logging:
   level:
     root: INFO
-    org.springframework.web: INFO
-    org.springframework.security: INFO
-    org.springframework.security.oauth2: INFO
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: refresh

@@ -1,28 +1,26 @@
 server:
-  port: 8080
+  port: 8080 # 端口号
 
 spring:
   application:
-    name: focason-gateway
+    name: focason-gateway # 应用名称
   main:
-    web-application-type: reactive
+    web-application-type: reactive # 程序类型
     allow-bean-definition-overriding: true
-    allow-circular-references: true
+    allow-circular-references: true # 允许
   rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-
-logging:
-  level:
-    root: INFO
-    org.springframework.web: INFO
-    org.springframework.security: INFO
-    org.springframework.security.oauth2: INFO
+    host: {RABBITMQ_HOST:localhost} # RabbitMQ主机名
+    port: {RABBITMQ_PORT:5672} # RabbitMQ端口
+    username: {RABBITMQ_USERNAME:guest} # RabbitMQ用户名
+    password: {RABBITMQ_PASSWORD:guest} # RabbitMQ密码
 
 management:
   endpoints:
     web:
       exposure:
-        include: bus-refresh
+        include: refresh, bus-refresh # 为Actuator开放所需监控地址
+
+# 日志级别
+logging:
+  level:
+    root: INFO

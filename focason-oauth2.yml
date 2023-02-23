@@ -1,22 +1,23 @@
 server:
-  port: 9000
+  port: 9000 # 端口号
   servlet:
-    context-path: /auth
+    context-path: /auth # 应用的上下文路径
 
 spring:
   application:
-    name: focason-oauth2
+    name: focason-oauth2 # 应用名称
   rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
+    host: {RABBITMQ_HOST:localhost} # RabbitMQ主机名
+    port: {RABBITMQ_PORT:5672} # RabbitMQ端口
+    username: {RABBITMQ_USERNAME:guest} # RabbitMQ用户名
+    password: {RABBITMQ_PASSWORD:guest} # RabbitMQ密码
   datasource:
+    # 数据库连接信息
     url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_SCHEMA:focason}?useSSL=false&autoReconnect=true&characterEncoding=UTF-8&useUnicode=yes
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:password}
     driver-class-name: com.mysql.jdbc.Driver
-    #druid连接池
+    # druid连接池
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_SCHEMA:focason}?useSSL=false&autoReconnect=true&characterEncoding=UTF-8&useUnicode=yes
@@ -30,19 +31,32 @@ spring:
         login-password: 123456
         reset-enable: false
   jackson:
-    time-zone: Asia/Tokyo
+    time-zone: Asia/Tokyo # 时区
   freemarker:
-    check-template-location: false
+    check-template-location: false # 不检查template文件夹
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     open-in-view: off
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, bus-refresh # 为Actuator开放所需监控地址
+
+# 将focason-oauth2注册到Eureka注册中心
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://${EUREKA_SERVER_USERNAME:root}:${EUREKA_SERVER_PASSWORD:password}@localhost:8761/eureka/
+
+# 日志级别
 logging:
   level:
     root: INFO
-    org.springframework.web: INFO
-    org.springframework.security: INFO
-    org.springframework.security.oauth2: INFO
 
 # JWTトークン
 jwt:
@@ -50,11 +64,3 @@ jwt:
   access_token_expires_in: 1200 # 単位：秒
   refresh_token_expires_in: 604800 # 単位：秒
   refresh_token_header: X-REFRESH-TOKEN
-auth:
-  name: admin
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: refresh, bus-refresh
