@@ -23,7 +23,7 @@ management:
 # 日志级别
 logging:
   level:
-    root: DEBUG
+    root: INFO
 
 # JWTトークン
 jwt:
