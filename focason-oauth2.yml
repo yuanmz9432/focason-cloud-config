@@ -1,7 +1,7 @@
 server:
   port: 9000 # 端口号
   servlet:
-    context-path: /auth # 应用的上下文路径
+    context-path: /sso # 应用的上下文路径
 
 spring:
   application:
@@ -11,32 +11,8 @@ spring:
     port: {RABBITMQ_PORT:5672} # RabbitMQ端口
     username: {RABBITMQ_USERNAME:guest} # RabbitMQ用户名
     password: {RABBITMQ_PASSWORD:guest} # RabbitMQ密码
-  datasource:
-    # 数据库连接信息
-    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_SCHEMA:focason}?useSSL=false&autoReconnect=true&characterEncoding=UTF-8&useUnicode=yes
-    username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:password}
-    driver-class-name: com.mysql.jdbc.Driver
-    # druid连接池
-    type: com.alibaba.druid.pool.DruidDataSource
-    druid:
-      url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_SCHEMA:focason}?useSSL=false&autoReconnect=true&characterEncoding=UTF-8&useUnicode=yes
-      username: ${DB_USERNAME:root}
-      password: ${DB_PASSWORD:password}
-      web-stat-filter:
-        enabled: true
-      stat-view-servlet:
-        enabled: true
-        login-username: admin
-        login-password: 123456
-        reset-enable: false
   jackson:
     time-zone: Asia/Tokyo
-  freemarker:
-    check-template-location: false
-  jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
-    open-in-view: off
 
 management:
   endpoints:
