@@ -11,6 +11,19 @@ spring:
     port: {RABBITMQ_PORT:5672} # RabbitMQ端口
     username: {RABBITMQ_USERNAME:guest} # RabbitMQ用户名
     password: {RABBITMQ_PASSWORD:guest} # RabbitMQ密码
+security:
+  oauth2:
+    client:
+      #不多说了
+      client-id: web
+      client-secret: 654321
+      #Token获取地址
+      access-token-uri: http://localhost:9000/sso/oauth/token
+      #验证页面地址
+      user-authorization-uri: http://localhost:9000/sso/oauth/authorize
+    resource:
+      #Token信息获取和校验地址
+      token-info-uri: http://localhost:9000/sso/oauth/check_token
 
 management:
   endpoints:
