@@ -1,5 +1,5 @@
 server:
-  port: 8001 # 端口号
+  port: 8201 # 端口号
   servlet:
     context-path: /image # 应用的上下文路径
 
