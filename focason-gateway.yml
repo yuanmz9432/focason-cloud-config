@@ -7,7 +7,15 @@ spring:
   main:
     web-application-type: reactive # 程序类型
     allow-bean-definition-overriding: true
-    allow-circular-references: true # 允许
+    allow-circular-references: true # 允许cloud:
+  gateway:
+    default-filters:
+      - TokenRelay
+    routes:
+      - id: focason-auth
+        uri: http://localhost:9000
+        predicates:
+          - Path=/sso/**
   rabbitmq:
     host: {RABBITMQ_HOST:localhost} # RabbitMQ主机名
     port: {RABBITMQ_PORT:5672} # RabbitMQ端口
