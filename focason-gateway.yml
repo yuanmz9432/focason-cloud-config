@@ -21,22 +21,22 @@ spring:
     port: {RABBITMQ_PORT:5672} # RabbitMQ端口
     username: {RABBITMQ_USERNAME:guest} # RabbitMQ用户名
     password: {RABBITMQ_PASSWORD:guest} # RabbitMQ密码
-  security:
-    oauth2:
-      client:
-        provider:
-          cognito:
-            issuerUri: https://cognito-idp.ap-northeast-1.amazonaws.com/ap-northeast-1_0FmxrlCHU
-            user-name-attribute: username
-        registration:
-          cognito:
-            client-id: 4enjeqtshg31g7hu4ie6kndsp # focason-app-client
-            client-secret: hqfp322m067f7gv3kp9fcrjl876ctbj3i5k8gnl0p1auqslg340
-            client-name: focason-app-client
-            provider: cognito
-            scope: openid
-            redirect-uri: 'http://localhost:8080/cognito/callback'
-            authorization-grant-type: authorization_code
+#  security:
+#    oauth2:
+#      client:
+#        provider:
+#          cognito:
+#            issuerUri: https://cognito-idp.ap-northeast-1.amazonaws.com/ap-northeast-1_0FmxrlCHU
+#            user-name-attribute: username
+#        registration:
+#          cognito:
+#            client-id: 4enjeqtshg31g7hu4ie6kndsp # focason-app-client
+#            client-secret: hqfp322m067f7gv3kp9fcrjl876ctbj3i5k8gnl0p1auqslg340
+#            client-name: focason-app-client
+#            provider: cognito
+#            scope: openid
+#            redirect-uri: 'http://localhost:8080/cognito/callback'
+#            authorization-grant-type: authorization_code
 
 management:
   endpoints:
