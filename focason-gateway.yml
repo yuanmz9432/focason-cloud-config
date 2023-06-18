@@ -27,7 +27,7 @@ spring:
             client-name: focason-app-client
             provider: cognito
             scope: openid
-            redirect-uri: 'http://localhost:8080/test'
+            redirect-uri: 'http://localhost:8080/cognito/callback'
             authorization-grant-type: authorization_code
 
 management:
