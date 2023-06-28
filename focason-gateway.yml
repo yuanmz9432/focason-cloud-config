@@ -18,7 +18,7 @@ spring:
 #          - Path=/sso/**
   cloud:
     gateway:
-      globalcors:
+      globalcors: # CORS对应
         corsConfigurations:
           '[/**]':
             allowedOrigins: "*"
