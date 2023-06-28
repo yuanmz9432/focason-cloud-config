@@ -18,12 +18,14 @@ spring:
 #          - Path=/sso/**
   cloud:
     gateway:
-      globals:
+      globalcors:
         corsConfigurations:
           '[/**]':
-            allowedOrigins: "*"
+            allowedOrigins: "http://localhost:3000"
+            allowedHeaders: "*"
             allowedMethods:
               - GET
+              - POST
   rabbitmq:
     host: {RABBITMQ_HOST:localhost} # RabbitMQ主机名
     port: {RABBITMQ_PORT:5672} # RabbitMQ端口
