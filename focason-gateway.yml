@@ -16,6 +16,14 @@ spring:
 #        uri: http://localhost:9000
 #        predicates:
 #          - Path=/sso/**
+  cloud:
+    gateway:
+      globals:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
   rabbitmq:
     host: {RABBITMQ_HOST:localhost} # RabbitMQ主机名
     port: {RABBITMQ_PORT:5672} # RabbitMQ端口
