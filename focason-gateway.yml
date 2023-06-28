@@ -21,11 +21,15 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-            allowedOrigins: "http://localhost:3000"
+            allowedOrigins: "*"
             allowedHeaders: "*"
             allowedMethods:
               - GET
               - POST
+              - DELETE
+              - PATCH
+              - PUT
+              - OPTIONS
   rabbitmq:
     host: {RABBITMQ_HOST:localhost} # RabbitMQ主机名
     port: {RABBITMQ_PORT:5672} # RabbitMQ端口
