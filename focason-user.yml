@@ -3,6 +3,10 @@ server:
   servlet:
     context-path: /users # 应用的上下文路径
 
+security:
+  basic:
+    enabled: false
+
 spring:
   application:
     name: focason-user # 应用名称
