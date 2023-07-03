@@ -11,8 +11,8 @@ spring:
   application:
     name: focason-user # 应用名称
   main:
-    web-application-type: reactive
     allow-bean-definition-overriding: true
+    web-application-type: reactive
     allow-circular-references: true
   rabbitmq:
     host: {RABBITMQ_HOST:localhost} # RabbitMQ主机名
