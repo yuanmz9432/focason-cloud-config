@@ -11,9 +11,9 @@ spring:
   application:
     name: focason-user # 应用名称
   main:
-    web-application-type: reactive # 程序类型
+    web-application-type: reactive
     allow-bean-definition-overriding: true
-    allow-circular-references: true # 允许cloud:
+    allow-circular-references: true
   rabbitmq:
     host: {RABBITMQ_HOST:localhost} # RabbitMQ主机名
     port: {RABBITMQ_PORT:5672} # RabbitMQ端口
