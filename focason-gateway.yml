@@ -5,8 +5,8 @@ spring:
   application:
     name: focason-gateway # 应用名称
   main:
-    web-application-type: reactive # 程序类型
     allow-bean-definition-overriding: true
+    web-application-type: reactive # 程序类型
     allow-circular-references: true # 允许cloud:
 #  gateway:
 #    default-filters:
