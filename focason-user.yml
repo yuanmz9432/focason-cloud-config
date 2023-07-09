@@ -27,11 +27,11 @@ spring:
     database-platform: org.hibernate.dialect.MySQLDialect
     open-in-view: off
 
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: refresh, bus-refresh # 为Actuator开放所需监控地址
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, bus-refresh # 为Actuator开放所需监控地址
 
 # ログ
 logging:
