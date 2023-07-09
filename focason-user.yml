@@ -35,7 +35,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*" # 为Actuator开放所需监控地址
+        include: ["refresh", "busrefresh", "bus-refresh"] # 为Actuator开放所需监控地址
 
 # ログ
 logging:
