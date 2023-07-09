@@ -26,6 +26,10 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     open-in-view: off
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
 
 management:
   endpoints:
