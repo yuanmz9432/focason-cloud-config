@@ -51,3 +51,5 @@ cloud:
 # Doma
 #doma:
 #  dialect: mysql
+
+foo: fooooooo
