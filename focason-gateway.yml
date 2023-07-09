@@ -69,3 +69,5 @@ jwt:
   access_token_expires_in: 1200 # 単位：秒
   refresh_token_expires_in: 604800 # 単位：秒
   refresh_token_header: X-REFRESH-TOKEN
+
+foo: 000000
