@@ -29,7 +29,7 @@ spring:
   endpoints:
     web:
       exposure:
-        include: *
+        include: refresh, busrefresh
 
 #management:
 #  endpoints:
