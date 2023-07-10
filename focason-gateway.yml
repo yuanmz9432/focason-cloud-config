@@ -11,10 +11,10 @@ spring:
     web-application-type: reactive # 程序类型
     allow-circular-references: true # 允许cloud重复加载bean对象
   rabbitmq:
-    host: {RABBITMQ_HOST:localhost} # RabbitMQ主机名
-    port: {RABBITMQ_PORT:5672} # RabbitMQ端口
-    username: {RABBITMQ_USERNAME:guest} # RabbitMQ用户名
-    password: {RABBITMQ_PASSWORD:guest} # RabbitMQ密码
+    host: ${RABBITMQ_HOST:localhost} # RabbitMQ主机名
+    port: ${RABBITMQ_PORT:5672} # RabbitMQ端口
+    username: ${RABBITMQ_USERNAME:guest} # RabbitMQ用户名
+    password: ${RABBITMQ_PASSWORD:guest} # RabbitMQ密码
 
 management:
   endpoints:

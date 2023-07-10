@@ -11,10 +11,10 @@ spring:
     web-application-type: reactive
     allow-circular-references: true
   rabbitmq:
-    host: {RABBITMQ_HOST:localhost} # RabbitMQ主机名
-    port: {RABBITMQ_PORT:5672} # RabbitMQ端口
-    username: {RABBITMQ_USERNAME:guest} # RabbitMQ用户名
-    password: {RABBITMQ_PASSWORD:guest} # RabbitMQ密码
+    host: ${RABBITMQ_HOST:localhost} # RabbitMQ主机名
+    port: ${RABBITMQ_PORT:5672} # RabbitMQ端口
+    username: ${RABBITMQ_USERNAME:guest} # RabbitMQ用户名
+    password: ${RABBITMQ_PASSWORD:guest} # RabbitMQ密码
   jackson:
     time-zone: Asia/Tokyo
   freemarker:
@@ -37,9 +37,9 @@ logging:
 # AWS
 cloud:
   aws:
-    region: {AWS_REGION:ap-northeast-1}
+    region: ${AWS_REGION:ap-northeast-1}
     s3:
       file-upload:
-        bucket-name: {AWS_S3_BUCKET_NAME:focason-sandbox}
+        bucket-name: ${AWS_S3_BUCKET_NAME:focason-sandbox}
         prefix:
         pre-signed-url-valid-minutes: 15 # PreSigned连接的有效时间，单位：分钟
