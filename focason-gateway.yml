@@ -1,5 +1,7 @@
 server:
   port: 8080 # 端口号
+  servlet:
+    context-path: /gateway # 应用的上下文路径
 
 spring:
   application:
@@ -7,50 +9,12 @@ spring:
   main:
     allow-bean-definition-overriding: true
     web-application-type: reactive # 程序类型
-    allow-circular-references: true # 允许cloud:
-#  gateway:
-#    default-filters:
-#      - TokenRelay
-#    routes:
-#      - id: focason-auth
-#        uri: http://localhost:9000
-#        predicates:
-#          - Path=/sso/**
-  cloud:
-    gateway:
-      globalcors: # CORS对应
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins: "*"
-            allowedHeaders: "*"
-            allowedMethods:
-              - GET
-              - POST
-              - DELETE
-              - PATCH
-              - PUT
-              - OPTIONS
+    allow-circular-references: true # 允许cloud重复加载bean对象
   rabbitmq:
     host: {RABBITMQ_HOST:localhost} # RabbitMQ主机名
     port: {RABBITMQ_PORT:5672} # RabbitMQ端口
     username: {RABBITMQ_USERNAME:guest} # RabbitMQ用户名
     password: {RABBITMQ_PASSWORD:guest} # RabbitMQ密码
-#  security:
-#    oauth2:
-#      client:
-#        provider:
-#          cognito:
-#            issuerUri: https://cognito-idp.ap-northeast-1.amazonaws.com/ap-northeast-1_0FmxrlCHU
-#            user-name-attribute: username
-#        registration:
-#          cognito:
-#            client-id: 4enjeqtshg31g7hu4ie6kndsp # focason-app-client
-#            client-secret: hqfp322m067f7gv3kp9fcrjl876ctbj3i5k8gnl0p1auqslg340
-#            client-name: focason-app-client
-#            provider: cognito
-#            scope: openid
-#            redirect-uri: 'http://localhost:8080/cognito/callback'
-#            authorization-grant-type: authorization_code
 
 management:
   endpoints:
@@ -62,12 +26,3 @@ management:
 logging:
   level:
     root: INFO
-
-# JWTトークン
-jwt:
-  secret: ${APP_SECRET:iWpJnu21sTumTsfyldkfjpo23iiu34tierfjwerjfop43oeorgfsndhfopoewkrjti43orweksdnfjw4e}
-  access_token_expires_in: 1200 # 単位：秒
-  refresh_token_expires_in: 604800 # 単位：秒
-  refresh_token_header: X-REFRESH-TOKEN
-
-foo: 000000

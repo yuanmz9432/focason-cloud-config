@@ -3,10 +3,6 @@ server:
   servlet:
     context-path: /users # 应用的上下文路径
 
-#security:
-#  basic:
-#    enabled: false
-
 spring:
   application:
     name: focason-user # 应用名称
@@ -31,7 +27,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: ["refresh", "busrefresh", "bus-refresh"] # 为Actuator开放所需监控地址
+        include: refresh, bus-refresh # 为Actuator开放所需监控地址
 
 # ログ
 logging:
@@ -47,9 +43,3 @@ cloud:
         bucket-name: {AWS_S3_BUCKET_NAME:focason-sandbox}
         prefix:
         pre-signed-url-valid-minutes: 15 # PreSigned连接的有效时间，单位：分钟
-
-# Doma
-#doma:
-#  dialect: mysql
-
-foo: 4444
