@@ -15,6 +15,16 @@ spring:
     port: ${RABBITMQ_PORT:5672} # RabbitMQ端口
     username: ${RABBITMQ_USERNAME:guest} # RabbitMQ用户名
     password: ${RABBITMQ_PASSWORD:guest} # RabbitMQ密码
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
 
 management:
   endpoints:
