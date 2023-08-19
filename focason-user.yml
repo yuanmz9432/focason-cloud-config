@@ -15,6 +15,11 @@ spring:
     port: ${RABBITMQ_PORT:5672} # RabbitMQ端口
     username: ${RABBITMQ_USERNAME:guest} # RabbitMQ用户名
     password: ${RABBITMQ_PASSWORD:guest} # RabbitMQ密码
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_SCHEMA:focason}?useSSL=false&autoReconnect=true&characterEncoding=UTF-8&useUnicode=yes
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:password}
+    driver-class-name: com.mysql.jdbc.Driver
   jackson:
     time-zone: Asia/Tokyo
   freemarker:
