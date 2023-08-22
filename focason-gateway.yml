@@ -35,4 +35,4 @@ management:
 # 日志级别
 logging:
   level:
-    root: INFO
+    root: DEBUG

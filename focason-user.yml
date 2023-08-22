@@ -37,7 +37,7 @@ management:
 # ログ
 logging:
   level:
-    root: INFO
+    root: DEBUG
 
 # AWS
 cloud:
