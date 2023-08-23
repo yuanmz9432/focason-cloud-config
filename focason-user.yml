@@ -38,7 +38,7 @@ management:
 logging:
   level:
     root: INFO
-    
+
 # AWS
 cloud:
   aws:
