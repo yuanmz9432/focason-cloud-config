@@ -31,3 +31,13 @@ eureka:
 logging:
   level:
     root: INFO
+
+# AWS
+cloud:
+  aws:
+    region: 'ap-northeast-1'
+    s3:
+      file-upload:
+        bucket-name: focason-sandbox
+        prefix:
+        pre-signed-url-valid-minutes: 15
