@@ -1,38 +1,4 @@
-server:
-  port: 8080 # 端口号
-  servlet:
-    context-path: /gateway # 应用的上下文路径
-
-spring:
-  application:
-    name: focason-gateway # 应用名称
-  main:
-    allow-bean-definition-overriding: true
-    web-application-type: reactive # 程序类型
-    allow-circular-references: true # 允许cloud重复加载bean对象
-  rabbitmq:
-    host: ${RABBITMQ_HOST:localhost} # RabbitMQ主机名
-    port: ${RABBITMQ_PORT:5672} # RabbitMQ端口
-    username: ${RABBITMQ_USERNAME:guest} # RabbitMQ用户名
-    password: ${RABBITMQ_PASSWORD:guest} # RabbitMQ密码
-  cloud:
-    gateway:
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins: "*"
-            allowedHeaders: "*"
-            allowedMethods:
-              - GET
-              - POST
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: refresh, bus-refresh # 为Actuator开放所需监控地址
-
-# 日志级别
+# 系统日志输出级别
 logging:
   level:
-    root: INFO
+    root: ${LOG_LEVEL:INFO}

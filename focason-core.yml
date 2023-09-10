@@ -1,47 +1,18 @@
-server:
-  port: 8000 # 端口号
-  servlet:
-    context-path: /core # 应用的上下文路径
-
-spring:
-  application:
-    name: focason-core # 应用名称
-  rabbitmq:
-    host: {RABBITMQ_HOST:localhost} # RabbitMQ主机名
-    port: {RABBITMQ_PORT:5672} # RabbitMQ端口
-    username: {RABBITMQ_USERNAME:guest} # RabbitMQ用户名
-    password: {RABBITMQ_PASSWORD:guest} # RabbitMQ密码
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: refresh, bus-refresh # 为Actuator开放所需监控地址
-
-# 将focason-core注册到Eureka注册中心
-eureka:
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.cloud.client.ip-address}:${server.port}
-  client:
-    service-url:
-      defaultZone: http://${EUREKA_SERVER_USERNAME:root}:${EUREKA_SERVER_PASSWORD:password}@localhost:8761/eureka/
-
-# 日志级别
+# 系统日志输出级别
 logging:
   level:
-    root: INFO
+    root: ${LOG_LEVEL:INFO}
 
 # AWS
 cloud:
   aws:
-    region: 'ap-northeast-1'
+    region: ${AWS_REGION:ap-northeast-1}
     s3:
       file-upload:
-        bucket-name: focason-sandbox
+        bucket-name: ${AWS_BUCKET_NAME:focason-sandbox}
         prefix:
-        pre-signed-url-valid-minutes: 15
+        pre-signed-url-valid-minutes: ${PRESIGNED_URL_VALID_MINUTES:15}
     cognito:
-      user-pool-id: ap-northeast-1_0FmxrlCHU
-      client-id: 4enjeqtshg31g7hu4ie6kndsp
-      client-secret: hqfp322m067f7gv3kp9fcrjl876ctbj3i5k8gnl0p1auqslg340
+      user-pool-id: ${COGNITO_USER_POOL_ID:ap-northeast-1_0FmxrlCHU}
+      client-id: ${COGNITO_CLIENT_ID:4enjeqtshg31g7hu4ie6kndsp}
+      client-secret: ${COGNITO_CLIENT_SECRET:hqfp322m067f7gv3kp9fcrjl876ctbj3i5k8gnl0p1auqslg340}
