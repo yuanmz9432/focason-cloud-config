@@ -1,40 +1,4 @@
-server:
-  port: 8081 # 端口号
-  servlet:
-    context-path: /users # 应用的上下文路径
-
-spring:
-  application:
-    name: focason-user # 应用名称
-  main:
-    allow-bean-definition-overriding: true
-    web-application-type: reactive
-    allow-circular-references: true
-  rabbitmq:
-    host: ${RABBITMQ_HOST:localhost} # RabbitMQ主机名
-    port: ${RABBITMQ_PORT:5672} # RabbitMQ端口
-    username: ${RABBITMQ_USERNAME:guest} # RabbitMQ用户名
-    password: ${RABBITMQ_PASSWORD:guest} # RabbitMQ密码
-  datasource:
-    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_SCHEMA:focason}?useSSL=false&autoReconnect=true&characterEncoding=UTF-8&useUnicode=yes
-    username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:password}
-    driver-class-name: com.mysql.jdbc.Driver
-  jackson:
-    time-zone: Asia/Tokyo
-  freemarker:
-    check-template-location: false
-  jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
-    open-in-view: off
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: refresh, bus-refresh # 为Actuator开放所需监控地址
-
-# ログ
+# 系统日志输出级别
 logging:
   level:
     root: ${LOG_LEVEL:INFO}
@@ -42,13 +6,13 @@ logging:
 # AWS
 cloud:
   aws:
-    region: 'ap-northeast-1'
+    region: ${AWS_REGION:ap-northeast-1}
     s3:
       file-upload:
-        bucket-name: focason-sandbox
+        bucket-name: ${AWS_BUCKET_NAME:focason-sandbox}
         prefix:
-        pre-signed-url-valid-minutes: 15
+        pre-signed-url-valid-minutes: ${PRESIGNED_URL_VALID_MINUTES:15}
     cognito:
-      user-pool-id: ap-northeast-1_0FmxrlCHU
-      client-id: 4enjeqtshg31g7hu4ie6kndsp
-      client-secret: hqfp322m067f7gv3kp9fcrjl876ctbj3i5k8gnl0p1auqslg340
+      user-pool-id: ${COGNITO_USER_POOL_ID:ap-northeast-1_0FmxrlCHU}
+      client-id: ${COGNITO_CLIENT_ID:4enjeqtshg31g7hu4ie6kndsp}
+      client-secret: ${COGNITO_CLIENT_SECRET:hqfp322m067f7gv3kp9fcrjl876ctbj3i5k8gnl0p1auqslg340}
