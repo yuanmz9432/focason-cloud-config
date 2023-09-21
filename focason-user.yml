@@ -11,7 +11,7 @@ cloud:
       file-upload:
         bucket-name: ${AWS_BUCKET_NAME:focason-sandbox}
         prefix:
-        pre-signed-url-valid-minutes: ${PRESIGNED_URL_VALID_MINUTES:15}
+        pre-signed-url-valid-minutes: ${PRESIGNED_URL_VALID_MINUTES:1440} # 最大10080　一日1440
     cognito:
       user-pool-id: ${COGNITO_USER_POOL_ID:ap-northeast-1_0FmxrlCHU}
       client-id: ${COGNITO_CLIENT_ID:4enjeqtshg31g7hu4ie6kndsp}
