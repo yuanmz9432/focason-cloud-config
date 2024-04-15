@@ -1,7 +1,7 @@
 # 系统日志输出级别
 logging:
   level:
-    root: ${LOG_LEVEL:DEBUG}
+    root: ${LOG_LEVEL:INFO}
 
 ## AWS
 cloud:
