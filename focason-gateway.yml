@@ -1,4 +1,8 @@
-# 系统日志输出级别
+# ----------------------------------------------------
+# 1. Logging Configuration
+# ----------------------------------------------------
 logging:
+  file:
+    name: logs/focason-gateway.log                                   # Log file path
   level:
-    root: ${LOG_LEVEL:INFO}
+    root: ${LOG_LEVEL:INFO}                                          # Root logging level

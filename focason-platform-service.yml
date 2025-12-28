@@ -1,0 +1,31 @@
+# ----------------------------------------------------
+# 1. Logging Configuration
+# ----------------------------------------------------
+logging:
+  file:
+    name: logs/focason-platform-service.log                                   # Log file path
+  level:
+    root: ${LOG_LEVEL:INFO}                                                   # Root logging level
+
+# ----------------------------------------------------
+# 2. Project Specific Configuration
+# ----------------------------------------------------
+focason:
+  # ----------------------------------------------------
+  # 5-1. Email Configuration
+  # ----------------------------------------------------
+  email:
+    send-by: ${EMAIL_SEND_BY:Focason Lab Team}                       # Display name for sender
+    send-from: ${EMAIL_SEND_FROM:noreply@focason.com}                # Email address for sender
+  # ----------------------------------------------------
+  # 5-2. AWS Configuration
+  # ----------------------------------------------------
+  cloud:
+    aws:
+      region: ${AWS_REGION:ap-northeast-1}                           # AWS region
+      # S3 Configuration
+      s3:
+        file-config:
+          bucket-name: ${AWS_BUCKET_NAME:focason-cloud-file}         # S3 bucket name for uploads
+          prefix:                                                    # Optional prefix for S3 objects
+          pre-signed-url-valid-minutes: ${PRESIGNED_URL_VALID_MINUTES:1440} # Pre-signed URL validity in minutes (Max 10080)
