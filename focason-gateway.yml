@@ -43,6 +43,6 @@ logging:
   file:
     name: logs/focason-gateway.log                                   # Log file path
   level:
-    root: ${LOG_LEVEL:DEBUG}                                          # Root logging level
-    org.springframework.amqp: ${LOG_LEVEL:DEBUG}
-    org.springframework.retry: ${LOG_LEVEL:DEBUG}
+    root: ${LOG_LEVEL:INFO}                                          # Root logging level
+    org.springframework.amqp: ${LOG_LEVEL:INFO}
+    org.springframework.retry: ${LOG_LEVEL:INFO}

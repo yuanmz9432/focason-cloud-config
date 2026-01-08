@@ -1,24 +1,102 @@
+# =====================================================
+# Copyright 2025 Focason Co.,Ltd. AllRights Reserved.
+# =====================================================
+
+# -----------------------------------------------------
+# 1. Spring Boot Configuration
+# -----------------------------------------------------
+
+spring:
+  # RabbitMQ Configuration
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}                                 # RabbitMQ host address
+    port: ${RABBITMQ_PORT:5672}                                      # RabbitMQ port
+    username: ${RABBITMQ_USERNAME:guest}                             # RabbitMQ username
+    password: ${RABBITMQ_PASSWORD:guest}                             # RabbitMQ password
+  # Datasource Configuration
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_SCHEMA:focason}?useSSL=false&autoReconnect=true&characterEncoding=UTF-8&useUnicode=yes&allowPublicKeyRetrieval=true&serverTimezone=Asia/Tokyo
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:password}
+    driver-class-name: com.mysql.cj.jdbc.Driver                         # MySQL JDBC Driver (8.x)
+  # Jackson (JSON serialization) Configuration
+  jackson:
+    time-zone: Asia/Tokyo                                            # Default timezone for date/time serialization
+  # FreeMarker Configuration
+  freemarker:
+    check-template-location: true                                    # Check if template location exists
+    template-loader-path:
+      - "classpath:/templates/"                                      # Default path for general templates
+      - "classpath:/templates/mail/"                                 # Dedicated path for email templates
+  # JPA (Hibernate) Configuration
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect            # Specifies MySQL dialect
+    open-in-view: off                                                # Disables Open Session In View pattern
+  # AWS Configuration
+  cloud:
+    aws:
+      region:
+        static: ap-northeast-1
+  # Mail Configuration
+  mail:
+    host: ${MAIL_HOST:mail.privateemail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME}                                       # Email password or App Password
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true                                             # Enables STARTTLS for secure connection
+  # Redis Configuration
+  data:
+    redis:
+      host: ${REDIS_HOST:127.0.0.1}
+      port: 6379
+      timeout: 3000ms                                                  # Connection timeout
+      lettuce:
+        pool:
+          max-active: 20                                               # Maximum number of active connections in the pool
+          max-wait: 100ms                                              # Maximum blocking wait time (negative values indicate no timeout)
+          max-idle: 20                                                 # Maximum number of idle connections
+          min-idle: 5                                                  # Minimum number of idle connections
+
+# -----------------------------------------------------
+# 2. Spring Boot Actuator Configuration
+# -----------------------------------------------------
+management:
+  endpoints:
+    web:
+      exposure:
+        # Exposes Actuator endpoints for monitoring and administration
+        include: refresh, bus-refresh, health
+
 # ----------------------------------------------------
-# 1. Logging Configuration
+# 3. Logging Configuration
 # ----------------------------------------------------
 logging:
   file:
-    name: logs/focason-platform-service.log                                   # Log file path
+    name: logs/focason-platform-service.log                          # Path to the log file
   level:
-    root: ${LOG_LEVEL:INFO}                                                   # Root logging level
+    root: ${LOG_LEVEL:INFO}                                          # Default logging level
+    # Doma SQL logging - only print SQL in DEBUG mode
+    # When root is INFO, SQL logs are suppressed
+    # When root is DEBUG (set LOG_LEVEL=DEBUG), SQL logs will be printed
+    org.seasar.doma: ${DOMA_LOG_LEVEL:WARN}
 
 # ----------------------------------------------------
-# 2. Project Specific Configuration
+# 4. Project Specific Configuration
 # ----------------------------------------------------
 focason:
   # ----------------------------------------------------
-  # 5-1. Email Configuration
+  # 4-1. Email Configuration
   # ----------------------------------------------------
   email:
     send-by: ${EMAIL_SEND_BY:Focason Lab Team}                       # Display name for sender
     send-from: ${EMAIL_SEND_FROM:noreply@focason.com}                # Email address for sender
   # ----------------------------------------------------
-  # 5-2. AWS Configuration
+  # 4-2. AWS Configuration
   # ----------------------------------------------------
   cloud:
     aws:
