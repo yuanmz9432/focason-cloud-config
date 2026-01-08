@@ -1,8 +1,48 @@
+# =====================================================
+# Copyright 2025 Focason Co.,Ltd. AllRights Reserved.
+# =====================================================
+
+# -----------------------------------------------------
+# 1. Spring Boot Configuration
+# -----------------------------------------------------
+spring:
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}                                 # RabbitMQ server hostname
+    port: ${RABBITMQ_PORT:5672}                                      # RabbitMQ server port
+    username: ${RABBITMQ_USERNAME:guest}                             # RabbitMQ authentication username
+    password: ${RABBITMQ_PASSWORD:guest}                             # RabbitMQ authentication password
+    ssl:
+      enabled: ${RABBITMQ_SSL:false}                                 # It must be enabled because Amazon MQ mandates SSL.
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: ["*"]                                    # Allowed CORS origins
+            allowedHeaders: "*"                                      # Allowed CORS headers
+            allowedMethods:                                          # Allowed HTTP methods for CORS
+              - GET
+              - POST
+              - PUT
+              - PATCH
+              - DELETE
+              - OPTIONS
+
+# -----------------------------------------------------
+# 2. Spring Boot Actuator Configuration
+# -----------------------------------------------------
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, bus-refresh, health                        # Actuator endpoints to expose for monitoring
 # ----------------------------------------------------
-# 1. Logging Configuration
+# 3. Logging Configuration
 # ----------------------------------------------------
 logging:
   file:
     name: logs/focason-gateway.log                                   # Log file path
   level:
     root: ${LOG_LEVEL:INFO}                                          # Root logging level
+    org.springframework.amqp: ${LOG_LEVEL:INFO}
+    org.springframework.retry: ${LOG_LEVEL:INFO}
